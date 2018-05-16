@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <!--stylesheet是样式表的意思，rel是单词relationship的缩写-->
+    <!--使用绝对路径引用资源(路径以/开头)，例如/bootstrap/css/bootstrap.css，而不是相对路径bootstrap/css/bootstrap.css-->
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <form role="form" id="registerForm">
+                <div class="form-group">
+                    <label for="userName">用户名</label><input type="userName" class="form-control" id="userName" />
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label><input type="password" class="form-control" id="password" />
+                </div>
+                <button type="submit" id="login" class="btn btn-default">登录</button>
+            </form>
+        </div>
+        <div class="col-md-6 column">
+        </div>
+    </div>
+</div>
+<div th:insert="~{/common/footer :: copy}" class="footer"></div>
+<script th:src="@{/js/jquery-3.3.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/user.js}"></script>
+</body>
+</html>
