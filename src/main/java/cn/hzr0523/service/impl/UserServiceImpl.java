@@ -69,7 +69,7 @@ public class UserServiceImpl implements IUserService {
         ResultObject resultObject = new ResultObject();
         if(userDTO == null) {
             resultObject.setResultCode("0");
-            resultObject.setResultMessage("参数错误");
+            resultObject.setResultMessage("参数错误") ;
             return resultObject;
         }
         //根据登录信息查询学员信息
