@@ -94,7 +94,6 @@ public class UserServiceImpl implements IUserService {
         resultObject.setResultData(token);
         byte[] bytes = JSONObject.toJSONBytes(resultObject);
         System.out.println(JSONObject.toJSONBytes(resultObject));
-
         try {
             System.out.println(new String(bytes, "utf-8"));
             JSONObject json = JSONObject.parseObject(new String(bytes, "utf-8"));
