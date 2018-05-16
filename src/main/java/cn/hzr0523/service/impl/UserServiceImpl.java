@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService {
             resultObject.setResultMessage("参数错误");
             return resultObject;
         }
-        try{
+        try {
             TbUser user = new TbUser();
             user.setCreated(new Date());
             user.setEmail(userDTO.getEmail());
@@ -65,16 +65,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResultObject userLogin(UserDTO userDTO){
+    public ResultObject userLogin(UserDTO userDTO) {
         ResultObject resultObject = new ResultObject();
-        if(userDTO == null) {
+        if (userDTO == null) {
             resultObject.setResultCode("0");
-            resultObject.setResultMessage("参数错误") ;
+            resultObject.setResultMessage("参数错误");
             return resultObject;
         }
         //根据登录信息查询学员信息
         TbUser user = userMapper.getUserInfo(userDTO.getUserName(), userDTO.getPassword());
-        if(user == null) {
+        if (user == null) {
             resultObject.setResultCode("0");
             resultObject.setResultMessage("用户名或密码错误");
             return resultObject;
