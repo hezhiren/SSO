@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * hezhi
  * 2018/5/2 14:51
@@ -24,6 +27,11 @@ public class UserController extends BaseController {
 
     @RequestMapping("/")
     public String defaultPage() {
+        return "/user/login.html";
+    }
+
+    @RequestMapping("/toLogin.do")
+    public String login() {
         return "/user/login.html";
     }
 
@@ -42,14 +50,14 @@ public class UserController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/login.do")
-    public JSONObject userLogin(@RequestBody UserDTO userDTO) {
+    public JSONObject userLogin(@RequestBody UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) {
         ResultObject resultObject = null;
-        resultObject = userService.userLogin(userDTO);
+        resultObject = userService.userLogin(userDTO, request, response);
         return getResult(resultObject.getResultCode(), resultObject.getResultMessage(), resultObject.getResultData());
     }
 
-    @RequestMapping("/toIndex.do")
+    @RequestMapping("/user/toIndex.do")
     public String toIndex() {
-        return "hello.html";
+        return "/index/index.html";
     }
 }

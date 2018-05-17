@@ -43,7 +43,7 @@ $("#login").click(
                 console.log(result);
                 if(result.code = 0) {
                     alert("登录成功");
-                    window.location.href="toIndex.do";
+                    window.location.href="/user/toIndex.do";
                 }else {
                     alert(result.msg);
                 }

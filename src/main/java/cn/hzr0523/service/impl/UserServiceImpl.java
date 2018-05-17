@@ -6,6 +6,7 @@ import cn.hzr0523.entity.TbUser;
 import cn.hzr0523.mapper.UserMapper;
 import cn.hzr0523.service.IUserService;
 import cn.hzr0523.service.JedisClient;
+import cn.hzr0523.util.CookieUtils;
 import cn.hzr0523.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
@@ -14,7 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.UUID;
 
@@ -65,7 +67,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResultObject userLogin(UserDTO userDTO) {
+    public ResultObject userLogin(UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) {
         ResultObject resultObject = new ResultObject();
         if (userDTO == null) {
             resultObject.setResultCode("0");
@@ -88,21 +90,32 @@ public class UserServiceImpl implements IUserService {
         jedisClient.set(USER_SESSION_KEY + ":" + token, JSONObject.toJSONString(user));
         //设置session过期时间
         jedisClient.expire(USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
+        //添加写cookie的逻辑，cookie的有效期是关闭浏览器就失效。
+        CookieUtils.setCookie(response,"TT_TOKEN", token, -1);
         //返回token
         resultObject.setResultCode("1");
         resultObject.setResultMessage("登录成功");
         resultObject.setResultData(token);
-        byte[] bytes = JSONObject.toJSONBytes(resultObject);
-        System.out.println(JSONObject.toJSONBytes(resultObject));
-        try {
-            System.out.println(new String(bytes, "utf-8"));
-            JSONObject json = JSONObject.parseObject(new String(bytes, "utf-8"));
-            System.out.println(json);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        System.out.println("ahah");
+//        byte[] bytes = JSONObject.toJSONBytes(resultObject);
+//        System.out.println(JSONObject.toJSONBytes(resultObject));
+//        try {
+//            System.out.println(new String(bytes, "utf-8"));
+//            JSONObject json = JSONObject.parseObject(new String(bytes, "utf-8"));
+//            System.out.println(json);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("ahah");
         //logger.info();
         return resultObject;
+    }
+
+    @Override
+    public TbUser getUserByToken(String token) {
+        String json = jedisClient.get(USER_SESSION_KEY + ":" + token);
+        if(StringUtil.isEmpty(json)) {
+            return null;
+        }
+        return JSONObject.toJavaObject(JSONObject.parseObject(json), TbUser.class);
     }
 }
