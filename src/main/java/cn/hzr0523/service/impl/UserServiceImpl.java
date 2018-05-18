@@ -91,7 +91,7 @@ public class UserServiceImpl implements IUserService {
         //设置session过期时间
         jedisClient.expire(USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
         //添加写cookie的逻辑，cookie的有效期是关闭浏览器就失效。
-        CookieUtils.setCookie(response,"TT_TOKEN", token, -1);
+        CookieUtils.setCookie(response, "TT_TOKEN", token, -1);
         //返回token
         resultObject.setResultCode("1");
         resultObject.setResultMessage("登录成功");
@@ -113,7 +113,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public TbUser getUserByToken(String token) {
         String json = jedisClient.get(USER_SESSION_KEY + ":" + token);
-        if(StringUtil.isEmpty(json)) {
+        if (StringUtil.isEmpty(json)) {
             return null;
         }
         return JSONObject.toJavaObject(JSONObject.parseObject(json), TbUser.class);
