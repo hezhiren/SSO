@@ -30,6 +30,4 @@ public class WebAppConfig implements WebMvcConfigurer {
 //        ir.addPathPatterns("/user");
 //        ir.excludePathPatterns("/toLogin.do");
     }
-
-
 }

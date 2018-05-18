@@ -41,15 +41,12 @@ $("#login").click(
             data:JSON.stringify(data),  //necessary
             success:function (result) {
                 console.log(result);
-                if(result.code = 0) {
-                    alert("登录成功");
+                if(result.code = 1) {
+                    //alert("登录成功");
                     window.location.href="/user/toIndex.do";
                 }else {
                     alert(result.msg);
                 }
-            },
-            error:function () {
-                alert("登录异常，请重试！");
             }
         });
     }
