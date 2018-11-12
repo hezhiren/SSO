@@ -2,9 +2,12 @@ package cn.hzr0523.config;
 
 import cn.hzr0523.interceptor.UserLoginInterceptor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -18,16 +21,19 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     //由于拦截器加载的时间点在springcontext之前
     @Bean
-    public HandlerInterceptor getLoginInterceptor(){
+    public HandlerInterceptor getLoginInterceptor() {
         return new UserLoginInterceptor();
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //添加自定义拦截器
-        registry.addInterceptor(getLoginInterceptor()).addPathPatterns("/user/**");
-//        InterceptorRegistration ir = new InterceptorRegistration(new UserLoginInterceptor());
-//        ir.addPathPatterns("/user");
-//        ir.excludePathPatterns("/toLogin.do");
+        registry.addInterceptor(getLoginInterceptor()).addPathPatterns("/user/**").excludePathPatterns("/user/toLogin.do");
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("*/toIndex.do").setViewName("/index/index.html");
+        registry.addViewController("*/toLogin.do").setViewName("/user/login.html");
     }
 }

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  * hezhi
  * 2018/5/14 16:55
  */
-@Component
 public class UserLoginInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -29,7 +28,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
         if(StringUtil.isEmpty(token)) {
             //用户未登陆
             //跳转到登录页面
-            response.sendRedirect("http://localhost:8080/toLogin.do");
+            response.sendRedirect(request.getContextPath() + "/user/toLogin.do");
             return false;
         }else {
             //如果能取到token说明用户可能已经登录
@@ -37,7 +36,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
             TbUser user = userService.getUserByToken(token);
             if(user == null) {
                 //session过期，重新登录，跳转到登录页面
-                response.sendRedirect("http://localhost:8080/toLogin.do");
+                response.sendRedirect(request.getContextPath() + "/user/toLogin.do");
                 return false;
             }else {
                 //将用户信息你放入request中

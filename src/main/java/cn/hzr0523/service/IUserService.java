@@ -28,5 +28,7 @@ public interface IUserService {
     ResultObject userLogin(UserDTO userDTO, HttpServletRequest request, HttpServletResponse response);
 
     TbUser getUserByToken(String token);
+
+    ResultObject getUserInfo(String name, String pwd);
 }
 

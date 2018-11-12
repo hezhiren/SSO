@@ -23,17 +23,19 @@ public class JedisConfig {
     @Value("${spring.redis.port}")
     public Integer port;
 
+    @Value("${spring.redis.password}")
+    public String password;
+
+    @Bean
+    public JedisPool jedisPool() {
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig(), host, port, 30, password);
+        return jedisPool;
+    }
+
     @Bean
     public JedisPoolConfig jedisPoolConfig() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxTotal(maxTotal);
         return jedisPoolConfig;
     }
-
-    @Bean
-    public JedisPool jedisPool() {
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig(), host, port);
-        return jedisPool;
-    }
-
 }

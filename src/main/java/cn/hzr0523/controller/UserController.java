@@ -14,26 +14,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * hezhi
  * 2018/5/2 14:51
  */
 @Controller
-@RequestMapping
+@RequestMapping("/user")
 public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/")
-    public String defaultPage() {
-        return "/user/login.html";
-    }
-
-    @RequestMapping("/toLogin.do")
-    public String login() {
-        return "/user/login.html";
-    }
+//    @RequestMapping
+//    public String defaultPage() {
+//        return "/user/login.html";
+//    }
+//
+//    @RequestMapping("/toLogin.do")
+//    public String login() {
+//        return "/user/login.html";
+//    }
 
     @RequestMapping("/toRegister.do")
     public String toRegister() {
@@ -56,8 +57,9 @@ public class UserController extends BaseController {
         return getResult(resultObject.getResultCode(), resultObject.getResultMessage(), resultObject.getResultData());
     }
 
-    @RequestMapping("/user/toIndex.do")
-    public String toIndex() {
-        return "/index/index.html";
+    @RequestMapping("/test.do")
+    public JSONObject toIndex() {
+        ResultObject resultObject = null;
+        resultObject = userService.getUserInfo("张三","123456");
     }
 }
