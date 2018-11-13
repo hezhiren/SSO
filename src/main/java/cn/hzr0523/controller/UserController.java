@@ -61,5 +61,6 @@ public class UserController extends BaseController {
     public JSONObject toIndex() {
         ResultObject resultObject = null;
         resultObject = userService.getUserInfo("张三","123456");
+        return getResult(resultObject.getResultCode(), resultObject.getResultMessage(), resultObject.getResultData());
     }
 }
