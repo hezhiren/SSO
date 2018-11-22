@@ -11,6 +11,9 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 /**
  * hezhi
  * 2018/6/12 13:19
@@ -46,5 +49,6 @@ public class Demo {
 
     //多线程就一定比单线程快？
     //测试一下
+
 
 }
