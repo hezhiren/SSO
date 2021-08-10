@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header layui-bg-cyan">
+        <div class="layui-logo layui-hide-xs layui-bg-cyan">机器领取管理平台</div>
+        <ul class="layui-nav layui-layout-right layui-bg-cyan">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
+                         class="layui-nav-img">
+                    tester
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">退出</a></dd>
+                    <dd><a href="">修改密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side  layui-bg-cyan">
+        <div class="layui-side-scroll layui-bg-cyan">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">首页管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">轮播图</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/main/toProduct" target="iframeMain">商品</a></li>
+                <li class="layui-nav-item"><a href="">租赁订单</a></li>
+                <li class="layui-nav-item"><a href="">操作记录</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其他设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">提示信息设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">投诉</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- 内容主体区域 -->
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <iframe src="" style="width: 100%; height: 100%" name="iframeMain"></iframe>
+    </div>
+    <div class="layui-footer">
+        版权所有，翻版必究！
+    </div>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+    //JS
+    layui.use(['element', 'layer', 'util'], function () {
+        var element = layui.element
+            , layer = layui.layer
+            , util = layui.util
+            , $ = layui.$;
+
+
+    });
+</script>
+</body>
+</html>

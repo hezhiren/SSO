@@ -23,12 +23,10 @@ public class JedisConfig {
     @Value("${spring.redis.port}")
     public Integer port;
 
-    @Value("${spring.redis.password}")
-    public String password;
 
     @Bean
     public JedisPool jedisPool() {
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig(), host, port, 30, password);
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig(), host, port, 30);
         return jedisPool;
     }
 

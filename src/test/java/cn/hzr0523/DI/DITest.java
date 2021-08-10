@@ -2,6 +2,8 @@ package cn.hzr0523.DI;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -19,5 +21,12 @@ public class DITest {
         knight.save();
 
         verify(mockTest, times(1)).embark();
+    }
+
+    @Test
+    public void test2() {
+        String a = "123";
+        String b = "1" + "23";
+        System.out.println(a == b);
     }
 }

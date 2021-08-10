@@ -1,6 +1,7 @@
 package cn.hzr0523.service.impl;
 
 import cn.hzr0523.service.JedisClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import redis.clients.jedis.JedisPool;
  * 2018/5/4 16:54
  */
 @Service
+@Slf4j
 public class JedisClientSingle implements JedisClient {
 
     @Autowired

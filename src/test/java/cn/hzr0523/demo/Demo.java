@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.mockito.Mockito.mock;
@@ -50,5 +50,18 @@ public class Demo {
     //多线程就一定比单线程快？
     //测试一下
 
+    @Test
+    public void test4() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(now.format(DateTimeFormatter.ofPattern("MM月dd日HH时mm分")));
+    }
 
+    @Test
+    public void test5() {
+      List<String> list = new ArrayList<>();
+      list.add("1");
+      list.add("2");
+      list.add("3");
+    }
 }

@@ -1,9 +1,7 @@
 package cn.hzr0523.entity;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -14,8 +12,7 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2018-05-03
  */
-@TableName("tb_user")
-public class TbUser extends Model<TbUser> {
+public class TbUser{
 
     private static final long serialVersionUID = 1L;
 
@@ -96,9 +93,5 @@ public class TbUser extends Model<TbUser> {
 		this.updated = updated;
 	}
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
 
 }

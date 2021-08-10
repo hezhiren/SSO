@@ -1,18 +1,16 @@
 package cn.hzr0523.demo.mybatis;
 
+import cn.hzr0523.DTO.UserDTO;
 import cn.hzr0523.entity.TbUser;
-import cn.hzr0523.mapper.UserMapper;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mybatis.spring.SqlSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Service;
+
+import java.time.ZonedDateTime;
+import java.util.*;
 
 /**
  * hezhi
@@ -21,12 +19,53 @@ import org.springframework.stereotype.Service;
 @RunWith(JUnit4.class)
 @SpringBootTest
 public class Demo {
-    @Autowired(required = false)
-    UserMapper userMapper;
+
 
     @Test
     public void test1() {
-       TbUser user = userMapper.getUserInfo("张三","123456");
-       System.out.println(user.getUsername() + "," + user.getPhone());
+    }
+
+    
+    @Test
+    public void test2() {
+        Map<String, Object> params = new HashMap<>();
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserName("111");
+        userDTO.setPassword("222");
+        userDTO.setEmail("333");
+
+       params.put("a", "aaaaa");
+        params.put("b", userDTO);
+
+
+
+        String json = JSONObject.toJSONString(params);//map转json字符串
+        System.out.println(json);
+    }
+
+
+    @Test
+    public void test3() {
+
+        ZonedDateTime now = ZonedDateTime.now();
+
+        ZonedDateTime test = now.plusDays(1);
+
+        long t1 = now.getMinute();
+        System.out.println(t1);
+        long t2 = test.getMinute();
+        System.out.println(t2);
+
+        System.out.println(t2 - t1);
+    }
+
+    @Test
+    public void test4() {
+        String s = "-100";
+        int a = Integer.parseInt(s);
+        System.out.println(a);
+        if(a < 0) {
+            System.out.println("q1111");
+        }
     }
 }
